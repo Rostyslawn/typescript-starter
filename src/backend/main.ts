@@ -10,11 +10,12 @@ const port: number = config.serverPort | 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
-app.use(express.static(path.join(__dirname, '..', '..', 'src', 'frontend')));
+app.use(express.static(path.join(process.cwd(), "dist", "frontend")));
+app.use(express.static(path.join(process.cwd(), "src", "backend")));
+app.use(express.static(path.join(process.cwd(), "src", "frontend")));
 
 app.get("/", (req: Request, res: Response) => {
-    res.sendFile(path.join(__dirname, '..', '..', 'src', 'frontend', 'html', 'index.html'));
+    res.sendFile(path.join(process.cwd(), "src", "frontend", "html", "index.html"));
 });
 
 app.listen(port, () => {
